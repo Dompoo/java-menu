@@ -1,7 +1,7 @@
 package menu.domain;
 
 import menu.CustomExceptions;
-import menu.service.NumberPicker;
+import menu.service.numberPicker.NumberPicker;
 
 import java.util.ArrayList;
 import java.util.List;

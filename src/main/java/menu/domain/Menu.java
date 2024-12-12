@@ -1,8 +1,10 @@
 package menu.domain;
 
-/*
- 
- */
+import menu.service.objectPicker.ObjectPicker;
+
+import java.util.Arrays;
+import java.util.List;
+
 public enum Menu {
 	
 	규동(MenuType.일식),
@@ -60,5 +62,14 @@ public enum Menu {
 	
 	Menu(MenuType menuType) {
 		this.menuType = menuType;
+	}
+	
+	public Menu pickMenu(MenuType menuType, List<Menu> ignoredMenuType, ObjectPicker<Menu> menuPicker) {
+		List<Menu> validMenus = Arrays.stream(Menu.values())
+				.filter(menu -> menu.menuType == menuType)
+				.filter(menu -> !ignoredMenuType.contains(menu))
+				.toList();
+		
+		return menuPicker.pick(validMenus);
 	}
 }

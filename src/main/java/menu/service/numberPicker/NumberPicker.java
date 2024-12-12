@@ -1,4 +1,4 @@
-package menu.service;
+package menu.service.numberPicker;
 
 public interface NumberPicker {
 

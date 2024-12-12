@@ -19,7 +19,7 @@ public class Coach {
 	
 	private static void validate(String name) {
 		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-			throw CustomExceptions.ILEEGAL_COACH_NAME_LENGTH.get(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+			throw CustomExceptions.ILLEGAL_COACH_NAME_LENGTH.get(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
 		}
 	}
 }

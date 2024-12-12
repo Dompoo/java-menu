@@ -3,6 +3,7 @@ package menu.domain;
 import menu.CustomExceptions;
 import menu.common.dto.MenuPickResult;
 import menu.common.dto.MenuPickResults;
+import menu.service.numberPicker.NumberPicker;
 import menu.service.objectPicker.ObjectPicker;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class LaunchMates {
 	
 	private static final int MIN_MATES_SIZE = 2;
 	private static final int MAX_MATES_SIZE = 5;
+	private static final List<String> LAUNCH_PICKING_DAYS = List.of("월", "화", "수", "목", "금");
 	
 	private final List<LaunchMate> mates;
 	
@@ -28,11 +30,12 @@ public class LaunchMates {
 		}
 	}
 	
-	public MenuPickResults recommendResults(List<MenuType> menuTypes, ObjectPicker<Menu> menuPicker) {
+	public MenuPickResults pickMenus(NumberPicker numberPicker, ObjectPicker<Menu> menuPicker) {
+		List<MenuType> menuTypes = MenuType.pickMenuTypes(LAUNCH_PICKING_DAYS.size(), numberPicker);
 		List<MenuPickResult> menuPickResults = new ArrayList<>();
 		for (LaunchMate mate : mates) {
 			menuPickResults.add(mate.pickMenus(menuTypes, menuPicker));
 		}
-		return new MenuPickResults(menuPickResults);
+		return new MenuPickResults(LAUNCH_PICKING_DAYS, menuPickResults);
 	}
 }

@@ -48,6 +48,9 @@ public class LaunchMates {
 		for (LaunchMate mate : mates) {
 			menuPickResults.add(mate.pickMenus(menuTypes, menuPicker));
 		}
-		return new MenuPickResults(LAUNCH_PICKING_DAYS, menuPickResults);
+		List<String> menuTypeNames = menuTypes.stream()
+				.map(Enum::name)
+				.toList();
+		return new MenuPickResults(LAUNCH_PICKING_DAYS, menuTypeNames, menuPickResults);
 	}
 }

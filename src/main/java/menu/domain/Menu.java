@@ -64,12 +64,16 @@ public enum Menu {
 		this.menuType = menuType;
 	}
 	
-	public Menu pickMenu(MenuType menuType, List<Menu> ignoredMenuType, ObjectPicker<Menu> menuPicker) {
+	public static Menu pickMenu(MenuType menuType, List<Menu> ignoredMenuType, ObjectPicker<Menu> menuPicker) {
 		List<Menu> validMenus = Arrays.stream(Menu.values())
 				.filter(menu -> menu.menuType == menuType)
 				.filter(menu -> !ignoredMenuType.contains(menu))
 				.toList();
 		
 		return menuPicker.pick(validMenus);
+	}
+	
+	public String getFormatedMenuName() {
+		return this.name().replaceAll("_", " ");
 	}
 }

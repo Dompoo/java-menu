@@ -1,7 +1,10 @@
 package menu.domain;
 
 import menu.CustomExceptions;
+import menu.common.dto.MenuPickResult;
+import menu.service.objectPicker.ObjectPicker;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,5 +36,18 @@ public class Coach {
 		if (noEatMenu.size() > MAX_NO_EAT_MENU) {
 			throw CustomExceptions.ILLEGAL_NO_EAT_MENU_SIZE.get(MAX_NO_EAT_MENU);
 		}
+	}
+	
+	public MenuPickResult pickMenus(List<MenuType> menuTypes, ObjectPicker<Menu> menuObjectPicker) {
+		List<Menu> menus = new ArrayList<>();
+		for (MenuType menuType : menuTypes) {
+			Menu menu = Menu.pickMenu(menuType, noEatMenu, menuObjectPicker);
+			noEatMenu.add(menu);
+			menus.add(menu);
+		}
+		List<String> menuNames = menus.stream()
+				.map(Menu::getFormatedMenuName)
+				.toList();
+		return new MenuPickResult(name, menuNames);
 	}
 }

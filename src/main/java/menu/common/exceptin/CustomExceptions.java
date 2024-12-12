@@ -34,6 +34,10 @@ public enum CustomExceptions {
 			"존재하지 않는 메뉴명 입니다.",
 			IllegalArgumentException.class
 	),
+	OVER_MAX_RETRY_ATTEPMT(
+			"최대 재시도 회수를 초과했습니다.",
+			IllegalStateException.class
+	),
 	;
 	
 	private final String message;

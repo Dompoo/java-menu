@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.CustomExceptions;
 import menu.service.objectPicker.ObjectPicker;
 
 import java.util.Arrays;
@@ -62,6 +63,13 @@ public enum Menu {
 	
 	Menu(MenuType menuType) {
 		this.menuType = menuType;
+	}
+	
+	public static Menu from(String menuName) {
+		return Arrays.stream(Menu.values())
+				.filter(menu -> menu.getFormatedMenuName().equals(menuName))
+				.findFirst()
+				.orElseThrow(CustomExceptions.MENU_NAME_NOT_FOUND::get);
 	}
 	
 	public static Menu pickMenu(MenuType menuType, List<Menu> ignoredMenuType, ObjectPicker<Menu> menuPicker) {

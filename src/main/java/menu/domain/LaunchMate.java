@@ -38,6 +38,14 @@ public class LaunchMate {
 		}
 	}
 	
+	public static LaunchMate of(String name, List<String> noEatMenuNames) {
+		List<Menu> noEatMenus = new ArrayList<>();
+		for (String noEatMenuName : noEatMenuNames) {
+			noEatMenus.add(Menu.from(noEatMenuName));
+		}
+		return new LaunchMate(name, noEatMenus);
+	}
+	
 	public MenuPickResult pickMenus(List<MenuType> menuTypes, ObjectPicker<Menu> menuObjectPicker) {
 		List<Menu> menus = new ArrayList<>();
 		for (MenuType menuType : menuTypes) {

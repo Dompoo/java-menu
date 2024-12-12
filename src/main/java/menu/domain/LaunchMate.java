@@ -58,4 +58,8 @@ public class LaunchMate {
 				.toList();
 		return new MenuPickResult(name, menuNames);
 	}
+	
+	public String getName() {
+		return name;
+	}
 }

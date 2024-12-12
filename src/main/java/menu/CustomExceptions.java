@@ -6,6 +6,10 @@ public enum CustomExceptions {
 			"점심 메이트들은 %d~%d명 사이여야 합니다.",
 			IllegalArgumentException.class
 	),
+	LAUNCH_MATES_NAME_DUPLICATED(
+			"점심 메이트들의 이름은 중복될 수 없습니다.",
+			IllegalArgumentException.class
+	),
 	ILLEGAL_LAUNCH_MATE_NAME_LENGTH(
 			"코치 이름은 %d~%d자 사이여야 합니다.",
 			IllegalArgumentException.class

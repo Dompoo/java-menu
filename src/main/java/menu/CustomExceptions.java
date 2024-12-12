@@ -2,6 +2,10 @@ package menu;
 
 public enum CustomExceptions {
 	
+	INVALID_LAUNCH_MATES_NAME_FORMAT(
+			"점심 메이트들의 이름 포맷이 잘못되었습니다.",
+			IllegalArgumentException.class
+	),
 	ILLEGAL_LAUNCH_MATES_SIZE(
 			"점심 메이트들은 %d~%d명 사이여야 합니다.",
 			IllegalArgumentException.class

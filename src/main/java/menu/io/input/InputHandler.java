@@ -20,14 +20,14 @@ public class InputHandler {
 	}
 	
 	public List<String> handleLaunchMateNames() {
-		writer.write("코치의 이름을 입력해 주세요. (, 로 구분)");
+		writer.write("코치의 이름을 입력해 주세요. (, 로 구분)\n");
 		String input = reader.readLine();
 		inputValidator.validateLaunchMateNames(input);
 		return inputParser.parseLaunchMateNames(input);
 	}
 	
 	public List<String> handleNoEatMenuNames(String mateName) {
-		writer.write("%s(이)가 못 먹는 메뉴를 입력해 주세요.".formatted(mateName));
+		writer.write("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n".formatted(mateName));
 		String input = reader.readLine();
 		inputValidator.validateNoEatMenuNames(input);
 		return inputParser.parseNoEatMenuNames(input);

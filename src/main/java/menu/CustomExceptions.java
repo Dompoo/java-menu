@@ -2,6 +2,10 @@ package menu;
 
 public enum CustomExceptions {
 	
+	ILLEGAL_LAUNCH_MATES_SIZE(
+			"점심 메이트는 %d~%d명 사이여야 합니다.",
+			IllegalArgumentException.class
+	),
 	ILLEGAL_COACH_NAME_LENGTH(
 			"코치 이름은 %d~%d자 사이여야 합니다.",
 			IllegalArgumentException.class

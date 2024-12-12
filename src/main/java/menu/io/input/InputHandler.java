@@ -25,4 +25,11 @@ public class InputHandler {
 		inputValidator.validateLaunchMateNames(input);
 		return inputParser.parseLaunchMateNames(input);
 	}
+	
+	public List<String> handleNoEatMenuNames(String mateName) {
+		writer.write("%s(이)가 못 먹는 메뉴를 입력해 주세요.".formatted(mateName));
+		String input = reader.readLine();
+		inputValidator.validateNoEatMenuNames(input);
+		return inputParser.parseNoEatMenuNames(input);
+	}
 }

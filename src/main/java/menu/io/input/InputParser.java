@@ -10,4 +10,10 @@ public class InputParser {
 				.map(String::trim)
 				.toList();
 	}
+	
+	public List<String> parseNoEatMenuNames(String input) {
+		return Arrays.stream(input.split(","))
+				.map(String::trim)
+				.toList();
+	}
 }

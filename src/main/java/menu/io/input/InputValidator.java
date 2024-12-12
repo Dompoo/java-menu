@@ -1,6 +1,6 @@
 package menu.io.input;
 
-import menu.CustomExceptions;
+import menu.common.exceptin.CustomExceptions;
 
 import java.util.regex.Pattern;
 

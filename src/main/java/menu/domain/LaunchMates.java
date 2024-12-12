@@ -1,8 +1,8 @@
 package menu.domain;
 
-import menu.CustomExceptions;
 import menu.common.dto.MenuPickResult;
 import menu.common.dto.MenuPickResults;
+import menu.common.exceptin.CustomExceptions;
 import menu.service.numberPicker.NumberPicker;
 import menu.service.objectPicker.ObjectPicker;
 

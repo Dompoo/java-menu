@@ -1,6 +1,6 @@
 package menu.domain;
 
-import menu.CustomExceptions;
+import menu.common.exceptin.CustomExceptions;
 import menu.service.objectPicker.ObjectPicker;
 
 import java.util.Arrays;

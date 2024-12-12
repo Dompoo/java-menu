@@ -1,4 +1,4 @@
-package menu;
+package menu.common.exceptin;
 
 public enum CustomExceptions {
 	

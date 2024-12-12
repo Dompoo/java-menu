@@ -2,7 +2,6 @@ package menu.domain;
 
 import menu.CustomExceptions;
 import menu.common.dto.MenuPickResult;
-import menu.common.dto.MenuPickResults;
 import menu.service.objectPicker.ObjectPicker;
 
 import java.util.ArrayList;
@@ -11,28 +10,44 @@ import java.util.Objects;
 
 public class LaunchMate {
 	
-	private static final int MIN_MATES_SIZE = 2;
-	private static final int MAX_MATES_SIZE = 5;
+	private static final int MIN_NAME_LENGTH = 2;
+	private static final int MAX_NAME_LENGTH = 4;
+	private static final int MAX_NO_EAT_MENU = 2;
 	
-	private final List<Coach> mates;
+	private final String name;
+	private final List<Menu> noEatMenu;
 	
-	public LaunchMate(List<Coach> mates) {
-		Objects.requireNonNull(mates);
-		validateMatesSize(mates);
-		this.mates = mates;
+	public LaunchMate(String name, List<Menu> noEatMenu) {
+		Objects.requireNonNull(name);
+		Objects.requireNonNull(noEatMenu);
+		validateNameLength(name);
+		validateNoEatMenuSize(noEatMenu);
+		this.name = name;
+		this.noEatMenu = noEatMenu;
 	}
 	
-	private static void validateMatesSize(List<Coach> mates) {
-		if (mates.size() < MIN_MATES_SIZE || mates.size() > MAX_MATES_SIZE) {
-			throw CustomExceptions.ILLEGAL_LAUNCH_MATES_SIZE.get(MIN_MATES_SIZE, MAX_MATES_SIZE);
+	private static void validateNameLength(String name) {
+		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+			throw CustomExceptions.ILLEGAL_LAUNCH_MATE_NAME_LENGTH.get(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
 		}
 	}
 	
-	public MenuPickResults recommendResults(List<MenuType> menuTypes, ObjectPicker<Menu> menuPicker) {
-		List<MenuPickResult> menuPickResults = new ArrayList<>();
-		for (Coach mate : mates) {
-			menuPickResults.add(mate.pickMenus(menuTypes, menuPicker));
+	private static void validateNoEatMenuSize(List<Menu> noEatMenu) {
+		if (noEatMenu.size() > MAX_NO_EAT_MENU) {
+			throw CustomExceptions.ILLEGAL_NO_EAT_MENU_SIZE.get(MAX_NO_EAT_MENU);
 		}
-		return new MenuPickResults(menuPickResults);
+	}
+	
+	public MenuPickResult pickMenus(List<MenuType> menuTypes, ObjectPicker<Menu> menuObjectPicker) {
+		List<Menu> menus = new ArrayList<>();
+		for (MenuType menuType : menuTypes) {
+			Menu menu = Menu.pickMenu(menuType, noEatMenu, menuObjectPicker);
+			noEatMenu.add(menu);
+			menus.add(menu);
+		}
+		List<String> menuNames = menus.stream()
+				.map(Menu::getFormatedMenuName)
+				.toList();
+		return new MenuPickResult(name, menuNames);
 	}
 }

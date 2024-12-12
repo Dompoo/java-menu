@@ -10,6 +10,10 @@ public enum CustomExceptions {
 			"메뉴 종류 뽑기는 최대 %d개 까지만 가능합니다.",
 			IllegalArgumentException.class
 	),
+	ILLEGAL_NO_EAT_MENU_SIZE(
+			"못 먹는 메뉴는 최대 %d개 까지만 가능합니다.",
+			IllegalArgumentException.class
+	),
 	;
 	
 	private final String message;

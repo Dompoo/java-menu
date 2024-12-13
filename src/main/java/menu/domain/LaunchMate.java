@@ -2,11 +2,12 @@ package menu.domain;
 
 import menu.common.dto.MenuPickResult;
 import menu.common.exceptin.CustomExceptions;
-import menu.service.objectPicker.ObjectPicker;
+import menu.service.objectPicker.StringShuffler;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LaunchMate {
 	
@@ -46,16 +47,16 @@ public class LaunchMate {
 		return new LaunchMate(name, noEatMenus);
 	}
 	
-	public MenuPickResult pickMenus(List<MenuType> menuTypes, ObjectPicker<Menu> menuObjectPicker) {
+	public MenuPickResult pickMenus(List<MenuType> menuTypes, StringShuffler stringShuffler) {
 		List<Menu> menus = new ArrayList<>();
 		for (MenuType menuType : menuTypes) {
-			Menu menu = Menu.pickMenu(menuType, noEatMenu, menuObjectPicker);
+			Menu menu = Menu.pickMenu(menuType, noEatMenu, stringShuffler);
 			noEatMenu.add(menu);
 			menus.add(menu);
 		}
 		List<String> menuNames = menus.stream()
 				.map(Menu::getFormatedMenuName)
-				.toList();
+				.collect(Collectors.toList());
 		return new MenuPickResult(name, menuNames);
 	}
 	

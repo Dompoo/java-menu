@@ -4,6 +4,6 @@ import java.util.List;
 
 public record MenuPickResult(
 		String coachName,
-		List<String> menuNames
+		List<String> menuName
 ) {
 }

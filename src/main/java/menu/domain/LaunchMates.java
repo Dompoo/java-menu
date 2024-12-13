@@ -4,7 +4,7 @@ import menu.common.dto.MenuPickResult;
 import menu.common.dto.MenuPickResults;
 import menu.common.exceptin.CustomExceptions;
 import menu.service.numberPicker.NumberPicker;
-import menu.service.objectPicker.ObjectPicker;
+import menu.service.objectPicker.StringShuffler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +42,15 @@ public class LaunchMates {
 		}
 	}
 	
-	public MenuPickResults pickMenus(NumberPicker numberPicker, ObjectPicker<Menu> menuPicker) {
+	public MenuPickResults pickMenus(NumberPicker numberPicker, StringShuffler stringShuffler) {
 		List<MenuType> menuTypes = MenuType.pickMenuTypes(LAUNCH_PICKING_DAYS.size(), numberPicker);
 		List<MenuPickResult> menuPickResults = new ArrayList<>();
 		for (LaunchMate mate : mates) {
-			menuPickResults.add(mate.pickMenus(menuTypes, menuPicker));
+			menuPickResults.add(mate.pickMenus(menuTypes, stringShuffler));
 		}
 		List<String> menuTypeNames = menuTypes.stream()
 				.map(Enum::name)
-				.toList();
+				.collect(Collectors.toList());
 		return new MenuPickResults(LAUNCH_PICKING_DAYS, menuTypeNames, menuPickResults);
 	}
 }

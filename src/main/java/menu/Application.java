@@ -12,7 +12,7 @@ import menu.io.reader.ConsoleReader;
 import menu.io.writer.ConsoleWriter;
 import menu.io.writer.Writer;
 import menu.service.numberPicker.RandomNumberPicker;
-import menu.service.objectPicker.RandomObjectPicker;
+import menu.service.objectPicker.RandomStringShuffler;
 
 public class Application {
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Application {
                 new InputHandler(new ConsoleReader(), writer, new InputValidator(), new InputParser()),
                 new OutputHandler(writer, new OutputParser()),
                 new RandomNumberPicker(),
-                new RandomObjectPicker<>()
+                new RandomStringShuffler()
         ).run();
     }
 }

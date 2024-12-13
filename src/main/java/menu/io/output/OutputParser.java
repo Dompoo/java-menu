@@ -13,7 +13,7 @@ public class OutputParser {
 		stringBuilder.append("\n");
 		stringBuilder.append(parseMenuTypeNames(menuPickResults));
 		stringBuilder.append("\n");
-		for (MenuPickResult menuPickResult : menuPickResults.menuPickResults()) {
+		for (MenuPickResult menuPickResult : menuPickResults.menuPickResult()) {
 			stringBuilder.append(parseMenus(menuPickResult, stringBuilder));
 			stringBuilder.append("\n");
 		}
@@ -23,7 +23,7 @@ public class OutputParser {
 	private static String parseMenus(MenuPickResult menuPickResult, StringBuilder stringBuilder) {
 		StringJoiner menuJoiner = new StringJoiner(" | ", "[ ", " ]");
 		menuJoiner.add(menuPickResult.coachName());
-		for (String menuName : menuPickResult.menuNames()) {
+		for (String menuName : menuPickResult.menuName()) {
 			menuJoiner.add(menuName);
 		}
 		return menuJoiner.toString();

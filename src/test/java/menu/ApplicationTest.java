@@ -1,21 +1,22 @@
 package menu;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.mockStatic;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.MockedStatic;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mockStatic;
 
 public class ApplicationTest extends NsTest {
 
@@ -30,7 +31,6 @@ public class ApplicationTest extends NsTest {
             assertTimeoutPreemptively(RANDOM_TEST_TIMEOUT, () -> {
                 final Executable executable = () -> {
                     runException("구구,제임스", "김밥", "떡볶이");
-
                     assertThat(output()).contains(
                         "점심 메뉴 추천을 시작합니다.",
                         "코치의 이름을 입력해 주세요. (, 로 구분)",

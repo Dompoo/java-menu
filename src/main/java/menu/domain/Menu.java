@@ -1,10 +1,11 @@
 package menu.domain;
 
 import menu.common.exceptin.CustomExceptions;
-import menu.service.objectPicker.ObjectPicker;
+import menu.service.objectPicker.StringShuffler;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
 	
@@ -72,13 +73,15 @@ public enum Menu {
 				.orElseThrow(CustomExceptions.MENU_NAME_NOT_FOUND::get);
 	}
 	
-	public static Menu pickMenu(MenuType menuType, List<Menu> ignoredMenuType, ObjectPicker<Menu> menuPicker) {
-		List<Menu> validMenus = Arrays.stream(Menu.values())
+	public static Menu pickMenu(MenuType menuType, List<Menu> ignoredMenuType, StringShuffler stringShuffler) {
+		List<String> validMenuNames = Arrays.stream(Menu.values())
 				.filter(menu -> menu.menuType == menuType)
 				.filter(menu -> !ignoredMenuType.contains(menu))
-				.toList();
+				.map(Menu::getFormatedMenuName)
+				.collect(Collectors.toList());
 		
-		return menuPicker.pick(validMenus);
+		String pickMenuName = stringShuffler.pick(validMenuNames);
+		return from(pickMenuName);
 	}
 	
 	public String getFormatedMenuName() {

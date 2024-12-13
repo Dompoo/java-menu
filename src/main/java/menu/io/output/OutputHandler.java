@@ -13,6 +13,10 @@ public class OutputHandler {
 		this.outputParser = outputParser;
 	}
 	
+	public void handleGreetings() {
+		writer.write("점심 메뉴 추천을 시작합니다.\n");
+	}
+	
 	public void handleMenuPickResults(MenuPickResults menuPickResults) {
 		String output = outputParser.parseMenuPickResults(menuPickResults);
 		writer.write(output);

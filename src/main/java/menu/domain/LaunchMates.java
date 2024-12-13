@@ -15,7 +15,7 @@ public class LaunchMates {
 	
 	private static final int MIN_MATES_SIZE = 2;
 	private static final int MAX_MATES_SIZE = 5;
-	private static final List<String> LAUNCH_PICKING_DAYS = List.of("월", "화", "수", "목", "금");
+	private static final List<String> LAUNCH_PICKING_DAYS = List.of("월요일", "화요일", "수요일", "목요일", "금요일");
 	
 	private final List<LaunchMate> mates;
 	

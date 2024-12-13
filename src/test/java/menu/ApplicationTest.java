@@ -25,7 +25,6 @@ public class ApplicationTest extends NsTest {
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
-
         @Test
         void 기능_테스트() {
             assertTimeoutPreemptively(RANDOM_TEST_TIMEOUT, () -> {

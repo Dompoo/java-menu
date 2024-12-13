@@ -17,6 +17,7 @@ public class OutputParser {
 			stringBuilder.append(parseMenus(menuPickResult, stringBuilder));
 			stringBuilder.append("\n");
 		}
+		stringBuilder.append("추천을 완료했습니다.");
 		return stringBuilder.toString();
 	}
 	

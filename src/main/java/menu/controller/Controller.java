@@ -29,6 +29,8 @@ public class Controller {
 	}
 	
 	public void run() {
+		outputHandler.handleGreetings();
+		
 		List<LaunchMate> mates = new ArrayList<>();
 		
 		List<String> names = retryHandler.tryUntilSuccess(inputHandler::handleLaunchMateNames);
